@@ -1,0 +1,14 @@
+# Data are downloaded separately (see data/README.md)
+data/raw/
+data/clean/
+
+# Run outputs (the published tables live in results/)
+outputs/
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store

@@ -1,0 +1,16 @@
+# Exact versions used for the published results (Python 3.11 / 3.12).
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.5.1
+scipy==1.13.1
+lightgbm==4.5.0
+optuna==3.6.1
+scanpy==1.10.3
+anndata==0.10.8
+leidenalg==0.10.2
+python-igraph==0.11.6
+louvain==0.8.2
+shapely==2.0.5
+matplotlib==3.9.2
+seaborn==0.13.2
+jupyter
