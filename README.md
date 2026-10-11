@@ -43,10 +43,7 @@ granularities (K = 8, 9, 15).
 
 ## How to reproduce
 
-1. **Install** Python 3.11 or 3.12 and the pinned libraries:
-```bash
-   pip install -r requirements.txt
-```
+1. **Install** Python 3.11 or 3.12 and the pinned libraries: `pip install -r requirements.txt`
 2. **Download** the three raw files into `data/raw/` (see
    [`data/README.md`](data/README.md)).
 3. **Clean** the data: run `notebooks/01_data_cleaning.ipynb`. It writes
