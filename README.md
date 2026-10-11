@@ -22,9 +22,21 @@ granularities (K = 8, 9, 15).
 ├── data/
 │   └── README.md                where to download the raw files
 ├── results/                     output tables from the published run
+├── archive/
+│   ├── original_run.ipynb       the original Colab run, with all its outputs
+│   └── README.md                how its outputs map to the run
 ├── requirements.txt             exact library versions
 └── LICENSE
 ```
+
+## Versions
+
+| | What it is | Use it to |
+|---|---|---|
+| Release **v1.0** | The code that produced the reported numbers | Reproduce the published results exactly |
+| Current version (**v1.1**) | v1.0 with one correction to cluster-to-label matching (see below) | Run the method on this or another dataset |
+| `archive/original_run.ipynb` | The original Colab notebook with every printed output | See the recorded run itself |
+| `results/` | Output tables from the published run | Check any number without re-running |
 
 ## How to reproduce
 
@@ -86,6 +98,22 @@ the K most frequent classes in the training pool are kept.
 | Figure 2 — raw counts per section and class | Step 17c | figure `bregma_class_rawcounts_874k.png` |
 | Gene importance (top 25 of 155 genes) | Step 17a | `lgbm_gain_importance_genes_K15.csv` |
 
+## Correction to cluster-to-label matching (v1.1)
+
+The version of the code that produced the reported numbers is release
+**v1.0**. In that version, Steps 9, 11, 12 and 13 matched clusters to classes
+one-to-one only, and every cluster left over was given a single fallback label
+instead of its majority class, the rule Steps 6 and 12b already used. Since
+v1.1 every step uses the same rule: Hungarian matching for the one-to-one
+part, majority class for each remaining cluster.
+
+Results that change when re-run with v1.1 are the graph-clustering ones that
+return more clusters than classes: tuned Leiden and Louvain (Step 9), the
+transfer of K = 15 graph parameters to K = 8 and 9 (Step 12), and the
+fixed-resolution 0.7 regime (Step 13). Supervised models, the Gaussian Mixture
+Model, the Step 6 baseline and the forced-K regime (Step 12b) are unchanged.
+To reproduce the reported numbers exactly, use release v1.0.
+
 ## Environment of the published run
 
 Python 3.12.13 on Google Colab, NumPy 1.26.4, pandas 2.2.2, scikit-learn 1.5.1,
@@ -93,13 +121,24 @@ SciPy 1.13.1, LightGBM 4.5.0, Optuna 3.6.1, Scanpy 1.10.3, AnnData 0.10.8,
 python-igraph 0.11.6, leidenalg 0.10.2, louvain 0.8.2. Leiden uses Scanpy's
 `igraph` flavour; Louvain uses the `vtraag` flavour (the `louvain` package).
 
-## Data source
+## Data sources
+
+The cell-by-gene table comes from:
 
 Moffitt, J. R., Bambah-Mukku, D., Eichhorn, S. W., Vaughn, E., Shekhar, K.,
 Perez, J. D., … Zhuang, X. (2018). Molecular, spatial, and functional
 single-cell profiling of the hypothalamic preoptic region. *Science*,
 362(6416), eaau5324. https://doi.org/10.1126/science.aau5324 —
 data: https://doi.org/10.5061/dryad.8t8s248
+
+The cell-boundary and molecule files for the same dataset come from the
+supplementary data of:
+
+Park, J., Choi, W., Tiesmeyer, S., Long, B., Borm, L. E., Garren, E., …
+Ishaque, N. (2021). Cell segmentation-free inference of cell types from in situ
+transcriptomics data. *Nature Communications*, 12, 3545.
+https://doi.org/10.1038/s41467-021-23807-4 —
+data: https://doi.org/10.5281/zenodo.3478502
 
 ## License
 
