@@ -1,8 +1,11 @@
 # Supervised vs. Unsupervised Cell-Type Recovery on the Moffitt (2018) MERFISH Dataset
 
-Code for the paper *Supervised vs. Unsupervised Cell-Type Recovery on the
-Moffitt (2018) MERFISH Hypothalamic Preoptic Dataset: A Feature-Contribution
-Benchmark* (Al Najjar and Rada, Bahçeşehir University).
+Code and results for a benchmark of supervised and unsupervised cell-type
+recovery on the Moffitt et al. (2018) MERFISH dataset of the mouse
+hypothalamic preoptic region, developed as part of an M.Sc. in Computer
+Engineering at Bahçeşehir University, Istanbul, under the supervision of
+Dr. Lavdie Rada. A manuscript describing the work is in preparation; table and
+figure numbers below refer to it.
 
 The benchmark asks how well the 15 published cell-type labels of
 Moffitt et al. (2018) can be recovered from MERFISH measurements of the mouse
@@ -21,7 +24,7 @@ granularities (K = 8, 9, 15).
 │   └── 02_benchmark.ipynb       the full benchmark (Steps 0–17)
 ├── data/
 │   └── README.md                where to download the raw files
-├── results/                     output tables from the published run
+├── results/                     output tables from the original run
 ├── archive/
 │   ├── original_run.ipynb       the original Colab run, with all its outputs
 │   └── README.md                how its outputs map to the run
@@ -33,17 +36,17 @@ granularities (K = 8, 9, 15).
 
 | | What it is | Use it to |
 |---|---|---|
-| Release **v1.0** | The code that produced the reported numbers | Reproduce the published results exactly |
+| Release **v1.0** | The code that produced the reported numbers | Reproduce the reported results exactly |
 | Current version (**v1.1**) | v1.0 with one correction to cluster-to-label matching (see below) | Run the method on this or another dataset |
 | `archive/original_run.ipynb` | The original Colab notebook with every printed output | See the recorded run itself |
-| `results/` | Output tables from the published run | Check any number without re-running |
+| `results/` | Output tables from the original run | Check any number without re-running |
 
 ## How to reproduce
 
 1. **Install** Python 3.11 or 3.12 and the pinned libraries:
-   ```bash
+```bash
    pip install -r requirements.txt
-   ```
+```
 2. **Download** the three raw files into `data/raw/` (see
    [`data/README.md`](data/README.md)).
 3. **Clean** the data: run `notebooks/01_data_cleaning.ipynb`. It writes
@@ -55,7 +58,7 @@ granularities (K = 8, 9, 15).
 Both notebooks run from the repository root or from `notebooks/`, locally or
 on Google Colab (clone the repository there and place the data as above).
 
-**Compute.** The published run used a single Google Colab A100 high-RAM
+**Compute.** The original run used a single Google Colab A100 high-RAM
 instance. The full benchmark takes several days, dominated by Optuna tuning
 (Steps 8–9) and full-graph clustering on ~870,000 cells (Steps 6, 12, 13).
 Each step writes its own tables, so steps can be run in separate sessions.
@@ -80,7 +83,7 @@ the K most frequent classes in the training pool are kept.
 
 ## Where each result comes from
 
-| Paper | Notebook step | Output table (`outputs/tables/`) |
+| Manuscript | Notebook step | Output table (`outputs/tables/`) |
 |---|---|---|
 | Table 2 — split sizes | Step 6 (printed) | — |
 | Table 3 — macro-F1, untuned baseline | Step 6 | `master_summary_all_K.csv`, `K{K}_pivot_f1_macro.csv` |
@@ -114,7 +117,7 @@ fixed-resolution 0.7 regime (Step 13). Supervised models, the Gaussian Mixture
 Model, the Step 6 baseline and the forced-K regime (Step 12b) are unchanged.
 To reproduce the reported numbers exactly, use release v1.0.
 
-## Environment of the published run
+## Environment of the original run
 
 Python 3.12.13 on Google Colab, NumPy 1.26.4, pandas 2.2.2, scikit-learn 1.5.1,
 SciPy 1.13.1, LightGBM 4.5.0, Optuna 3.6.1, Scanpy 1.10.3, AnnData 0.10.8,
