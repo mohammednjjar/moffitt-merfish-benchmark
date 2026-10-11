@@ -1,0 +1,11 @@
+{
+  "best_cv_f1": 0.10832635523857526,
+  "best_params": {
+    "n_estimators": 416,
+    "max_depth": 43,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "max_features": "log2"
+  },
+  "n_trials": 25
+}

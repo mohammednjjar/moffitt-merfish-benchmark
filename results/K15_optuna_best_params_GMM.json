@@ -1,0 +1,11 @@
+{
+  "best_cv_f1": 0.5353617274553453,
+  "best_params": {
+    "covariance_type": "tied",
+    "reg_covar": 0.0002206796053259487,
+    "n_init": 3,
+    "init_params": "kmeans",
+    "max_iter": 329
+  },
+  "n_trials": 25
+}
