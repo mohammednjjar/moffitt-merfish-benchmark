@@ -1,9 +1,0 @@
-{
-  "best_subsample_f1": 0.6410087818743766,
-  "best_params": {
-    "resolution": 1.3074760285458602,
-    "n_neighbors": 39
-  },
-  "n_trials": 20,
-  "tune_sample_size": 100000
-}
